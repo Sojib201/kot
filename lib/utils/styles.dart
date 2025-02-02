@@ -8,8 +8,8 @@ class Utils {
   );
 
   static TextStyle heading1 = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.bold,
+    fontSize: 12,
+    //fontWeight: FontWeight.bold,
     color: Utils.primaryColor,
   );
 
