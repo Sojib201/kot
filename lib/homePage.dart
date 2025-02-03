@@ -384,6 +384,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:kot/utils/styles.dart';
+import 'package:kot/widget/OrderItemWidget.dart';
+import 'package:kot/widget/holdButton.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -393,6 +395,17 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
+
+  final Map<String, bool> checkedItems = {
+    "BBQ Burger": false,
+    "8’ Cheese Blust Pizza": false,
+    "7up (500mL)": false,
+    "8’ BBQ Pizza": false,
+    "Thai Soup": false,
+  };
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -549,15 +562,12 @@ class _HomepageState extends State<Homepage> {
                     return Padding(
                       padding: const EdgeInsets.all(8),
                       child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(
                               color: Colors.black.withOpacity(0.4),
                               blurRadius: 5,
-                              offset: Offset(0,4)
-                            )
-                          ]
-                        ),
+                              offset: Offset(0, 0),)
+                        ],),
                         width: 300,
                         child: Column(
                           children: [
@@ -566,9 +576,9 @@ class _HomepageState extends State<Homepage> {
                               width: 300,
 
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(8),
-                                    topRight: Radius.circular(8)),
+                                    topRight: Radius.circular(8),),
                                 border: Border.all(color: Utils.secondaryColor),
                                 color: Utils.secondaryColor,
                               ),
@@ -589,7 +599,8 @@ class _HomepageState extends State<Homepage> {
                                             style: Utils.heading1),
                                       ],
                                     ),
-                                    Text('Order No: #KOT123456', style: Utils.heading1),
+                                    Text('Order No: #KOT123456',
+                                        style: Utils.heading1),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -615,16 +626,17 @@ class _HomepageState extends State<Homepage> {
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(8),
                                     bottomRight: Radius.circular(8)),
-                                border: Border.all(color: Utils.secondaryColor),
+                                border: Border.all(color: Utils.secondaryColor,width: 2),
                                 color: Utils.primaryColor,
                               ),
                               child: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Expanded(
-                                        flex:7,
+                                        flex: 7,
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: Utils.secondaryColor,
@@ -640,14 +652,16 @@ class _HomepageState extends State<Homepage> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width:5,),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
                                       Expanded(
                                         flex: 3,
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: Utils.secondaryColor,
                                             borderRadius:
-                                            BorderRadius.circular(3),
+                                                BorderRadius.circular(3),
                                           ),
                                           child: Center(
                                             child: Text(
@@ -660,7 +674,36 @@ class _HomepageState extends State<Homepage> {
                                       )
                                     ],
                                   ),
-                                  Row(),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      OrderItemWidget(
+                                        title: "BBQ Burger",
+                                        quantity: "1",
+                                        note: "No Lettuce",
+                                        isChecked: checkedItems["BBQ Burger"]!,
+                                        onChanged: (value) => setState(() => checkedItems["BBQ Burger"] = value),
+                                      ),
+                                      OrderItemWidget(
+                                        title: "8’ Cheese Blust Pizza",
+                                        quantity: "1",
+                                        extra: "Mayonnaise",
+                                        note: "Medium Spicy",
+                                        isHighlighted: true,
+                                        isChecked: checkedItems["8’ Cheese Blust Pizza"]!,
+                                        onChanged: (value) => setState(() => checkedItems["8’ Cheese Blust Pizza"] = value),
+                                      ),
+                                      OrderItemWidget(
+                                        title: "7up (500mL)",
+                                        quantity: "1",
+                                        isChecked: checkedItems["7up (500mL)"]!,
+                                        onChanged: (value) => setState(() => checkedItems["7up (500mL)"] = value),
+                                      ),
+
+
+
+                                    ],
+                                  ),
                                   SizedBox(height: 8),
                                   SizedBox(
                                     width: 220,
@@ -680,6 +723,16 @@ class _HomepageState extends State<Homepage> {
                                         //foregroundColor: Colors.white, // Text color
                                       ),
                                       child: Text('Start'),
+                                    ),
+                                  ),
+                                  SizedBox(height: 15,),
+                                  Center(
+                                    child: HoldToSendButton(
+                                      onCompleted: () {
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          const SnackBar(content: Text("✅ Money Sent Successfully!")),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ],
