@@ -256,7 +256,8 @@ class _HoldToSendButtonState extends State<HoldToSendButton> {
             child: AnimatedContainer(
               curve: Curves.bounceIn,
 
-              duration: const Duration(milliseconds: 1200),
+
+              duration: const Duration(milliseconds: 600),
               width: double.infinity,
               height: 60,
               decoration: BoxDecoration(
