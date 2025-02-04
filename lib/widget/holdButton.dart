@@ -594,14 +594,6 @@ class _HoldToSendButtonState extends State<HoldToSendButton> {
                       ),
                     ),
                   ),
-                  // Text(
-                  //   actionButton,
-                  //   style: const TextStyle(
-                  //     color: Colors.white,
-                  //     fontSize: 12,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),
                     child: Text(
@@ -642,3 +634,11 @@ class ButtonClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
+
+
+
+
+
+
+
+
