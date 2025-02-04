@@ -144,13 +144,327 @@
 
 
 
+// import 'package:flutter/material.dart';
+//
+// import '../utils/styles.dart';
+//
+// class HoldToSendButton extends StatefulWidget {
+//   final VoidCallback onCompleted;
+//
+//   const HoldToSendButton({super.key, required this.onCompleted});
+//
+//   @override
+//   _HoldToSendButtonState createState() => _HoldToSendButtonState();
+// }
+//
+// class _HoldToSendButtonState extends State<HoldToSendButton> {
+//   double _progress = 0.0;
+//   bool _isHolding = false;
+//   static const Duration holdDuration = Duration(milliseconds: 1200);
+//   Color _buttonColor = Utils.secondaryColor;
+//   String actionButton = 'Start';
+//
+//   void _startProgress() {
+//     setState(() {
+//       _isHolding = true;
+//       actionButton = 'Done';  // Change the button text immediately
+//       _buttonColor = Colors.blue;  // Change background color immediately
+//     });
+//
+//     Future.delayed(holdDuration, () {
+//       if (_isHolding) {
+//         widget.onCompleted();
+//         _showCompletionDialog();
+//       }
+//       setState(() {
+//         _isHolding = false;
+//         _progress = 0.0;
+//       });
+//     });
+//   }
+//
+//   void _cancelProgress() {
+//     setState(() {
+//       _isHolding = false;
+//       _progress = 0.0;
+//       _buttonColor = Utils.secondaryColor;
+//       actionButton = 'Start';
+//     });
+//   }
+//
+//   void _showCompletionDialog() {
+//     showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(15),
+//           ),
+//           content: const Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               Icon(
+//                 Icons.check_circle,
+//                 color: Colors.green,
+//                 size: 80,
+//               ),
+//               SizedBox(height: 10),
+//               Text(
+//                 'Started',
+//                 style: TextStyle(
+//                   fontSize: 18,
+//                   fontWeight: FontWeight.bold,
+//                   color: Colors.green,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onLongPressStart: (_) => _startProgress(),
+//       onLongPressEnd: (_) => _cancelProgress(),
+//       child: Stack(
+//         alignment: Alignment.center,
+//         children: [
+//           ClipPath(
+//             clipper: ButtonClipper(),
+//             child: AnimatedContainer(
+//               curve: Curves.easeInOut,
+//               duration: const Duration(milliseconds: 300),  // Faster transition
+//               width: double.infinity,
+//               height: 60,
+//               decoration: BoxDecoration(
+//                 color: _buttonColor,
+//               ),
+//             ),
+//           ),
+//           Center(
+//             child: AnimatedSwitcher(
+//               duration: const Duration(milliseconds: 300),
+//               child: Text(
+//                 actionButton,
+//                 key: ValueKey<String>(actionButton),  // Ensure smooth transition
+//                 textAlign: TextAlign.center,
+//                 style: const TextStyle(
+//                   color: Colors.white,
+//                   fontSize: 16,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// class ButtonClipper extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     Path path = Path();
+//     path.moveTo(0, 30);
+//     path.quadraticBezierTo(size.width / 2, -15, size.width, 30);
+//     path.lineTo(size.width, size.height);
+//     path.lineTo(0, size.height);
+//     path.close();
+//     return path;
+//   }
+//
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// import 'package:flutter/material.dart';
+//
+// import '../utils/styles.dart';
+//
+// class HoldToSendButton extends StatefulWidget {
+//   final VoidCallback onCompleted;
+//
+//   const HoldToSendButton({super.key, required this.onCompleted});
+//
+//   @override
+//   _HoldToSendButtonState createState() => _HoldToSendButtonState();
+// }
+//
+// class _HoldToSendButtonState extends State<HoldToSendButton> {
+//   double _progress = 0.0;
+//   bool _isHolding = false;
+//   static const Duration holdDuration = Duration(milliseconds: 1200);
+//   Color _buttonColor = Utils.secondaryColor;
+//   String actionButton = 'Start';
+//
+//   void _startProgress() {
+//     setState(() {
+//       _isHolding = true;
+//       actionButton = 'Done';
+//       _buttonColor = Colors.blue;
+//     });
+//
+//     Future.delayed(holdDuration, () {
+//       if (_isHolding) {
+//         widget.onCompleted();
+//         _showCompletionDialog();
+//       }
+//       setState(() {
+//         _isHolding = false;
+//         _progress = 0.0;
+//       });
+//     });
+//   }
+//
+//   void _cancelProgress() {
+//     setState(() {
+//       _isHolding = false;
+//       _progress = 0.0;
+//       _buttonColor = Utils.secondaryColor;
+//       actionButton = 'Start';
+//     });
+//   }
+//
+//   void _showCompletionDialog() {
+//     showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(15),
+//           ),
+//           content: const Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               Icon(
+//                 Icons.check_circle,
+//                 color: Colors.green,
+//                 size: 80,
+//               ),
+//               SizedBox(height: 10),
+//               Text(
+//                 'Started',
+//                 style: TextStyle(
+//                   fontSize: 18,
+//                   fontWeight: FontWeight.bold,
+//                   color: Colors.green,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onLongPressStart: (_) => _startProgress(),
+//       onLongPressEnd: (_) => _cancelProgress(),
+//       child: Stack(
+//         alignment: Alignment.center,
+//         children: [
+//           ClipPath(
+//             clipper: ButtonClipper(),
+//             child: AnimatedContainer(
+//               curve: Curves.easeInOut,
+//               duration: const Duration(milliseconds:100),
+//               width: double.infinity,
+//               height: 60,
+//               decoration: BoxDecoration(
+//                 color: _buttonColor,
+//               ),
+//             ),
+//           ),
+//           Column(
+//             //crossAxisAlignment: CrossAxisAlignment.center,
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               Stack(
+//                 alignment: Alignment.center,
+//                 children: [
+//                   Positioned(
+//                     // top: -20,
+//                     child: SizedBox(
+//                       width: 40,
+//                       height: 40,
+//                       child: CircularProgressIndicator(
+//                         value: _progress,
+//                         backgroundColor: Colors.white.withOpacity(0.3),
+//                         valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                   Text(
+//                     actionButton,
+//                     style: const TextStyle(
+//                       color: Colors.white,
+//                       fontSize: 12,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//
+//               //const SizedBox(height: 8),
+//
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// class ButtonClipper extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     Path path = Path();
+//     path.moveTo(0, 30);
+//     path.quadraticBezierTo(size.width / 2, -15, size.width, 30);
+//     path.lineTo(size.width, size.height);
+//     path.lineTo(0, size.height);
+//     path.close();
+//     return path;
+//   }
+//
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+// }
+//
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 import 'package:flutter/material.dart';
-
-import '../utils/styles.dart';
 
 class HoldToSendButton extends StatefulWidget {
   final VoidCallback onCompleted;
@@ -164,26 +478,25 @@ class HoldToSendButton extends StatefulWidget {
 class _HoldToSendButtonState extends State<HoldToSendButton> {
   double _progress = 0.0;
   bool _isHolding = false;
-  static const Duration holdDuration = Duration(milliseconds: 1200);
-  Color _buttonColor = Utils.secondaryColor;
+  static const Duration holdDuration = Duration(milliseconds: 2200);
   String actionButton = 'Start';
+  Color _buttonColor = Colors.pink;
 
   void _startProgress() {
     setState(() {
       _isHolding = true;
       actionButton = 'Done';
+      _buttonColor = Colors.blue;
     });
 
     Future.delayed(holdDuration, () {
       if (_isHolding) {
         widget.onCompleted();
-        actionButton = 'Done';
         _showCompletionDialog();
       }
       setState(() {
         _isHolding = false;
         _progress = 0.0;
-        //_buttonColor = Colors.pink;
       });
     });
 
@@ -192,11 +505,10 @@ class _HoldToSendButtonState extends State<HoldToSendButton> {
 
   void _updateProgress() async {
     while (_isHolding && _progress < 1.0) {
-      await Future.delayed(const Duration(milliseconds: 600));
+      await Future.delayed(const Duration(milliseconds: 100));
       if (_isHolding) {
         setState(() {
           _progress += 0.05;
-          _buttonColor = Color.lerp(Colors.blue, Colors.blue, _progress)!;
         });
       }
     }
@@ -206,8 +518,8 @@ class _HoldToSendButtonState extends State<HoldToSendButton> {
     setState(() {
       _isHolding = false;
       _progress = 0.0;
-      _buttonColor = Utils.secondaryColor;
       actionButton = 'Start';
+      _buttonColor = Colors.pink;
     });
   }
 
@@ -254,27 +566,60 @@ class _HoldToSendButtonState extends State<HoldToSendButton> {
           ClipPath(
             clipper: ButtonClipper(),
             child: AnimatedContainer(
-              curve: Curves.bounceIn,
-
-
-              duration: const Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 300),
               width: double.infinity,
               height: 60,
               decoration: BoxDecoration(
-                color: _buttonColor,
-              ),
+                  //color: Color.lerp(Colors.pink, Colors.green, _progress),
+                  color: _buttonColor),
             ),
           ),
-          Center(
-            child: Text(
-              actionButton,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+          Column(
+            //crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(
+                    // top: -20,
+                    child: SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: CircularProgressIndicator(
+                        value: _progress,
+                        backgroundColor: Colors.white.withOpacity(0.3),
+                        valueColor:
+                            const AlwaysStoppedAnimation<Color>(Colors.white),
+                      ),
+                    ),
+                  ),
+                  // Text(
+                  //   actionButton,
+                  //   style: const TextStyle(
+                  //     color: Colors.white,
+                  //     fontSize: 12,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    child: Text(
+                      actionButton,
+                      key: ValueKey<String>(actionButton),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
+
+              //const SizedBox(height: 8),
+            ],
           ),
         ],
       ),
@@ -285,10 +630,9 @@ class _HoldToSendButtonState extends State<HoldToSendButton> {
 class ButtonClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-
     Path path = Path();
     path.moveTo(0, 30);
-    path.quadraticBezierTo(size.width / 2, -15, size.width, 30);
+    path.quadraticBezierTo(size.width / 2, -20, size.width, 30);
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
     path.close();
